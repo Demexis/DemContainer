@@ -1,0 +1,19 @@
+{
+    "name": "DemContainer.Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:23c54e61071e3904ab2aa6cf4b54faff",
+        "GUID:c51d914116e14ce4c94a763c2dfa64e2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

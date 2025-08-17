@@ -1,0 +1,22 @@
+{
+  "name": "com.demcontainer",
+  "author":
+  {
+    "name": "Devid Sorochinsky",
+    "url": "https://github.com/Demexis"
+  },
+  "displayName": "DemContainer",
+  "description": "DI container for use in Unity.",
+  "unity": "2021.3",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Demexis/DemContainer.git"
+  },
+  "keywords":
+  [
+    "demcontainer",
+    "cotnainer",
+	"di"
+  ]
+}

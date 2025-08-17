@@ -1,0 +1,18 @@
+{
+    "name": "DemContainer.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:23c54e61071e3904ab2aa6cf4b54faff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

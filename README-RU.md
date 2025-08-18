@@ -2,6 +2,26 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 # DemContainer
 
+<table>
+  <tr></tr>
+  <tr>
+    <td colspan="3">Языки Readme:</td>
+  </tr>
+  <tr></tr>
+  <tr>
+    <td nowrap width="100">
+      <a href="https://github.com/Demexis/DemContainer">
+        <span>English</span>
+      </a>  
+    </td>
+    <td nowrap width="100">
+      <a href="https://github.com/Demexis/DemContainer/blob/main/README-RU.md">
+        <span>Русский</span>
+      </a>  
+    </td>
+  </tr>
+</table>
+
 Данный контейнер используется для инъекции зависимостей между системами и компонентами. Может использоваться и для обычных классов. Был спроектирован как замена использованию имплементации паттерна "Service Allocator".
 
 ## Содержание

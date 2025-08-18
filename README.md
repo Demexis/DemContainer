@@ -15,7 +15,7 @@
       </a>  
     </td>
     <td nowrap width="100">
-      <a href="https://github.com/Demexis/DemContainer/blob/main/README-RU.md">
+      <a href="https://github.com/Demexis/DemContainer/blob/master/README-RU.md">
         <span>Русский</span>
       </a>  
     </td>

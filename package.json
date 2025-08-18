@@ -7,7 +7,7 @@
   },
   "displayName": "DemContainer",
   "description": "DI container for use in Unity.",
-  "unity": "2021.3",
+  "unity": "2022.2",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "keywords":
   [
     "demcontainer",
-    "cotnainer",
-	"di"
+    "container",
+	  "di"
   ]
 }

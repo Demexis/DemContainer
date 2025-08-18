@@ -39,7 +39,8 @@ namespace DemContainer {
         public IContainerInjector ContainerInjector { get; private set; }
         public IContainerSubscriptions ContainerSubscriptions { get; private set; }
         
-        public BaseRootInstaller parentRootInstaller;
+        public BaseRootInstaller ParentRootInstaller { get => parentRootInstaller; set => parentRootInstaller = value; }
+        [SerializeField] private BaseRootInstaller parentRootInstaller;
         public List<BaseChildInstaller> childInstallers = new();
         private SubscribableGate<BaseRootInstaller> awakeGate = new();
         private SubscribableGate<ContainerRegistratorInfo> configuredGate = new();
@@ -117,17 +118,19 @@ namespace DemContainer {
             
             ContainerSubscriptions?.Dispose();
 
-            foreach (var (type, _) in ContainerRegistrator.Registrations) {
-                if (StaticInstallments.ContainerRegistrator.Registrations.ContainsKey(type)) {
-                    continue;
-                }
-                
-                if(!ContainerResolver.ResolvedSingletonTypes.TryGetValue(type, out var resolvedObject)) {
-                    continue;
-                }
+            if (ContainerRegistrator != null) {
+                foreach (var (type, _) in ContainerRegistrator.Registrations) {
+                    if (StaticInstallments.ContainerRegistrator.Registrations.ContainsKey(type)) {
+                        continue;
+                    }
 
-                if (resolvedObject is IDisposable disposableObject) {
-                    disposableObject.Dispose();
+                    if (!ContainerResolver.ResolvedSingletonTypes.TryGetValue(type, out var resolvedObject)) {
+                        continue;
+                    }
+
+                    if (resolvedObject is IDisposable disposableObject) {
+                        disposableObject.Dispose();
+                    }
                 }
             }
         }
@@ -144,6 +147,11 @@ namespace DemContainer {
             ContainerRegistrator.Register<IContainerResolver, IContainerResolver>(_ => ContainerResolver);
             ContainerRegistrator.Register<IContainerInjector, IContainerInjector>(_ => ContainerInjector);
             ContainerRegistrator.Register<IContainerSubscriptions, IContainerSubscriptions>(_ => ContainerSubscriptions);
+            ContainerRegistrator.Register<IGameObjectFactory, GameObjectFactory>();
+            ContainerRegistrator.Register<IUnityObjectFactory, UnityObjectFactory>();
+            ContainerRegistrator.Register<IObjectFactory, ObjectFactory>();
+            ContainerRegistrator.Register<IConstructorDependencyContainer, ConstructorDependencyContainer>(_ =>
+                    new ConstructorDependencyContainer(ContainerResolver));
         }
 
         private void ConnectAwake(BaseRootInstaller parentRootInstaller) {

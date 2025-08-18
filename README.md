@@ -117,7 +117,8 @@ public sealed class PlayerSystem : IPlayerSystem {
 
 __3) Add the created installers to the scene, pass the reference of the child installer to the root installer.__
 
-(INSERT IMAGE)
+<img width="661" height="556" alt="demcontainer_link_root_and_child_installer" src="https://github.com/user-attachments/assets/e2943ea7-c80e-4796-85cb-0147933526a0" />
+
 
 __4) Create a component that uses `IPlayerSystem` to spawn the player prefab.__
 
@@ -133,11 +134,13 @@ public sealed class SpawnPlayerPoint : MonoBehaviour {
 
 __5) Add `SpawnPlayerPoint` to the game object. Specify this object or its parent/ancestor in the _“Injectable Objects”_ array.__
 
-(INSERT IMAGE)
+<img width="1081" height="556" alt="demcontainer_link_injectable_objects" src="https://github.com/user-attachments/assets/acc4b6e6-7955-46e3-8d99-b3737a44a8c7" />
+
 
 __6) Start the scene.__
 
-(INSERT IMAGE)
+<img width="1161" height="752" alt="demcontainer_success_scene_launch" src="https://github.com/user-attachments/assets/3e04d5dd-60d0-433b-8b2f-5d9541369faf" />
+
 
 ## Details
 
@@ -388,7 +391,8 @@ public sealed class WelcomeStorage : MonoBehaviour {
 
 4) Link them in the inspector, and don't forget to specify the other root installer as the parent.
 
-(INSERT IMAGE)
+<img width="1368" height="600" alt="demcontainer_link_static_root_child_installers" src="https://github.com/user-attachments/assets/6769c091-ad19-4172-97d2-2772b77b06c0" />
+
 
 ## Limitations
 

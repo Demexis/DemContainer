@@ -22,7 +22,7 @@
   </tr>
 </table>
 
-This container is used to inject dependencies between systems and components. It can also be used for regular classes. It was designed as a replacement for the “Service Allocator” pattern implementation.
+This container is used to inject dependencies between systems and components. It can also be used for regular classes. It was designed as a replacement for the “Service Locator” pattern implementation.
 
 ## Table of Contents
 - [Setup](#setup)

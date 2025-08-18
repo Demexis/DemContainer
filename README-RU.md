@@ -117,7 +117,8 @@ public sealed class PlayerSystem : IPlayerSystem {
 
 __3) Добавьте созданные инсталлеры на сцену, передайте ссылку на дочерний инсталлер корневому инсталлеру.__
 
-(INSERT IMAGE)
+<img width="661" height="556" alt="demcontainer_link_root_and_child_installer" src="https://github.com/user-attachments/assets/e2943ea7-c80e-4796-85cb-0147933526a0" />
+
 
 __4) Создайте компонент который использует `IPlayerSystem` чтобы заспавнить префаб игрока.__
 
@@ -133,11 +134,13 @@ public sealed class SpawnPlayerPoint : MonoBehaviour {
 
 __5) Добавьте `SpawnPlayerPoint` на игровой объект. Укажите этот объект или его родителя/предка в массив _"Injectable Objects"_.__
 
-(INSERT IMAGE)
+<img width="1081" height="556" alt="demcontainer_link_injectable_objects" src="https://github.com/user-attachments/assets/acc4b6e6-7955-46e3-8d99-b3737a44a8c7" />
+
 
 __6) Запустите сцену.__
 
-(INSERT IMAGE)
+<img width="1161" height="752" alt="demcontainer_success_scene_launch" src="https://github.com/user-attachments/assets/3e04d5dd-60d0-433b-8b2f-5d9541369faf" />
+
 
 ## Детали
 
@@ -388,7 +391,8 @@ public sealed class WelcomeStorage : MonoBehaviour {
 
 4) Связать их в инспекторе, и не забыть указать другому корневому инсталлеру в качестве родителя.
 
-(INSERT IMAGE)
+<img width="1368" height="600" alt="demcontainer_link_static_root_child_installers" src="https://github.com/user-attachments/assets/6769c091-ad19-4172-97d2-2772b77b06c0" />
+
 
 ## Ограничения
 

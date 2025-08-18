@@ -2,6 +2,26 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 # DemContainer
 
+<table>
+  <tr></tr>
+  <tr>
+    <td colspan="3">Readme Languages:</td>
+  </tr>
+  <tr></tr>
+  <tr>
+    <td nowrap width="100">
+      <a href="https://github.com/Demexis/DemContainer">
+        <span>English</span>
+      </a>  
+    </td>
+    <td nowrap width="100">
+      <a href="https://github.com/Demexis/DemContainer/blob/main/README-RU.md">
+        <span>Русский</span>
+      </a>  
+    </td>
+  </tr>
+</table>
+
 This container is used to inject dependencies between systems and components. It can also be used for regular classes. It was designed as a replacement for the “Service Allocator” pattern implementation.
 
 ## Table of Contents

@@ -61,7 +61,7 @@ namespace DemContainer {
         }
 
         private void AwakeChild() {
-            Debug.Log(DEBUG_LOG_PREFIX_OK + GetType().Name + ": Skipping Configure(), subscribing for parent root-installer.");
+            Debug.Log(DEBUG_LOG_PREFIX_OK + GetType().Name + ": Skipping Configure(), subscribing for parent root-installer.", this);
             parentRootInstaller.awakeGate.Subscribe(ConnectAwake);
             parentRootInstaller.configuredGate.Subscribe(ConnectRegister);
         }
@@ -94,7 +94,7 @@ namespace DemContainer {
         }
 
         private void StartChild() {
-            Debug.Log(DEBUG_LOG_PREFIX_OK + GetType().Name + ": Skipping Start(), subscribing for parent root-installer.");
+            Debug.Log(DEBUG_LOG_PREFIX_OK + GetType().Name + ": Skipping Start(), subscribing for parent root-installer.", this);
             parentRootInstaller.startedGate.Subscribe(ConnectStart);
         }
 
@@ -106,9 +106,9 @@ namespace DemContainer {
                 ResolveNonLazy();
             }
             
-            Debug.Log("Resolver analyzer result: " + Environment.NewLine + ContainerResolver.OperationsTableAnalyzer);
-            Debug.Log("Injector analyzer result: " + Environment.NewLine + ContainerInjector.OperationsTableAnalyzer);
-            Debug.Log("Constructor-injector analyzer result: " + Environment.NewLine + ContainerResolver.Resolve<IConstructorDependencyContainer>().OperationsTableAnalyzer);
+            Debug.Log("Resolver analyzer result: " + Environment.NewLine + ContainerResolver.OperationsTableAnalyzer, this);
+            Debug.Log("Injector analyzer result: " + Environment.NewLine + ContainerInjector.OperationsTableAnalyzer, this);
+            Debug.Log("Constructor-injector analyzer result: " + Environment.NewLine + ContainerResolver.Resolve<IConstructorDependencyContainer>().OperationsTableAnalyzer, this);
         }
 
         private void OnDestroy() {
@@ -138,7 +138,7 @@ namespace DemContainer {
         private void ValidateChildInstallers() {
             for (var i = 0; i < childInstallers.Count; i++) {
                 if (childInstallers[i] == null) {
-                    Debug.LogError(DEBUG_LOG_PREFIX_ERROR + GetType().Name + " contains NULL child-installer at index - " + i);
+                    Debug.LogError(DEBUG_LOG_PREFIX_ERROR + GetType().Name + " contains NULL child-installer at index - " + i, this);
                 }
             }
         }
@@ -173,10 +173,10 @@ namespace DemContainer {
         
         private static void InvokeRegistration(BaseRootInstaller rootInstaller, ContainerRegistratorInfo containerRegistratorInfo) {
             Debug.Log(DEBUG_LOG_PREFIX_OK
-                + $"Configuring {rootInstaller.GetType().Name} with container builder named - {containerRegistratorInfo.name}");
+                + $"Configuring {rootInstaller.GetType().Name} with container builder named - {containerRegistratorInfo.name}", rootInstaller);
 
             Debug.Log(DEBUG_LOG_PREFIX_OK + "Registering child installers: "
-                + string.Join(", ", rootInstaller.childInstallers.Select(x => x.GetType().Name)));
+                + string.Join(", ", rootInstaller.childInstallers.Select(x => x.GetType().Name)), rootInstaller);
 
             foreach (var installer in rootInstaller.childInstallers) {
                 installer.Register(containerRegistratorInfo.containerRegistrator);
@@ -191,10 +191,10 @@ namespace DemContainer {
 
         private static void InvokeResolving(BaseRootInstaller rootInstaller, ContainerResolverInfo containerResolverInfo) {
             Debug.Log(DEBUG_LOG_PREFIX_OK
-                + $"Resolving {rootInstaller.GetType().Name} with container resolver named - {containerResolverInfo.name}");
+                + $"Resolving {rootInstaller.GetType().Name} with container resolver named - {containerResolverInfo.name}", rootInstaller);
 
             Debug.Log(DEBUG_LOG_PREFIX_OK + "Installing child installers: "
-                + string.Join(", ", rootInstaller.childInstallers.Select(x => x.GetType().Name)));
+                + string.Join(", ", rootInstaller.childInstallers.Select(x => x.GetType().Name)), rootInstaller);
 
             using (new OperationTimer("ROOT_INSTALLER_RESOLVING-"+rootInstaller.GetType().Name, OperationTimerDebug.Log)) {
                 foreach (var installer in rootInstaller.childInstallers) {
@@ -218,14 +218,14 @@ namespace DemContainer {
                                                      .Where(x =>
                                                          ContainerResolver.ResolvedSingletonTypes.ContainsKey(x.Key))
                                                      .Select(x => x.Key.Name);
-            Debug.Log(DEBUG_LOG_PREFIX_OK + "Already installed types on non-lazy resolving: " + string.Join(", ", installedTypes));
+            Debug.Log(DEBUG_LOG_PREFIX_OK + "Already installed types on non-lazy resolving: " + string.Join(", ", installedTypes), this);
             
             var notInstalledNonLazyTypes = ContainerRegistrator.Registrations
                                                      .Where(x =>
                                                          !x.Value.Lazy &&
                                                          !ContainerResolver.ResolvedSingletonTypes.ContainsKey(x.Key))
                                                      .Select(x => x.Key.Name);
-            Debug.Log(DEBUG_LOG_PREFIX_OK + "Not installed non-lazy types on non-lazy resolving: " + string.Join(", ", notInstalledNonLazyTypes));
+            Debug.Log(DEBUG_LOG_PREFIX_OK + "Not installed non-lazy types on non-lazy resolving: " + string.Join(", ", notInstalledNonLazyTypes), this);
             
             foreach (var (type, registrationRecord) in ContainerRegistrator.Registrations) {
                 if (registrationRecord.Lazy) {

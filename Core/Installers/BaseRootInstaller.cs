@@ -29,8 +29,10 @@ namespace DemContainer {
         }
     }
     
-    [DefaultExecutionOrder(-5000)]
+    [DefaultExecutionOrder(EXECUTION_ORDER)]
     public abstract class BaseRootInstaller : MonoBehaviour {
+        public const int EXECUTION_ORDER = -5000;
+        
         public const string DEBUG_LOG_PREFIX_OK = "[<color=green>DI</color>] ";
         public const string DEBUG_LOG_PREFIX_ERROR = "[<color=red>DI</color>] ";
         

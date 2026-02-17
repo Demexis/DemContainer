@@ -1,15 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace DemContainer {
     public abstract class BaseChildInstaller : MonoBehaviour {
-        public GameObject[] InjectableObjects {
-            get => injectableObjects;
-            set => injectableObjects = value;
-        }
-        [SerializeField] private GameObject[] injectableObjects;
+        [field: SerializeField] public List<GameObject> InjectableObjects { get; set; } = new();
+        [SerializeField, HideInInspector, Obsolete] private GameObject[] injectableObjects;
 
         public bool IsInstalled { get; private set; }
-        
+
+        private void OnValidate() {
+            if (injectableObjects == null) {
+                return;
+            }
+
+            if (injectableObjects.Length == 0) {
+                return;
+            }
+
+            InjectableObjects = new List<GameObject>();
+            InjectableObjects.AddRange(injectableObjects);
+            injectableObjects = Array.Empty<GameObject>();
+            EditorUtility.SetDirty(this);
+            EditorUtility.SetDirty(gameObject);
+            Debug.LogError("SetDirty component: " + GetType().Name);
+        }
+
         public void Register(IContainerRegistrator containerRegistrator) {
             if (IsInstalled) {
                 Debug.LogWarning("Already registered installer - " + GetType().Name);
@@ -28,8 +45,8 @@ namespace DemContainer {
 
             var gameObjectFactory = containerResolver.Resolve<IGameObjectFactory>();
 
-            for (var i = 0; i < injectableObjects.Length; i++) {
-                var obj = injectableObjects[i];
+            for (var i = 0; i < InjectableObjects.Count; i++) {
+                var obj = InjectableObjects[i];
                 if (obj == null) {
                     Debug.LogError($"Null object (Index = {i}) in {GetType().Name} ({gameObject.name}).");
                     continue;

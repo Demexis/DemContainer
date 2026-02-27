@@ -9,12 +9,10 @@ namespace DemContainer {
         public IStaticContainerRegistrator StaticContainerRegistrator { get; private set; }
         public IStaticContainerResolver StaticContainerResolver { get; private set; }
         
-        protected override void AwakeInherited() {
+        protected override void RegisterInherited() {
             StaticContainerRegistrator = new StaticContainerRegistrator(StaticInstallments.ContainerRegistrator);
             StaticContainerResolver = new StaticContainerResolver(StaticInstallments.ContainerResolver);
-        }
-
-        protected override void RegisterInherited() {
+            
             Debug.Log(DEBUG_LOG_PREFIX_OK + "Registering static child installers: "
                 + string.Join(", ", staticChildInstallers.Select(x => x.GetType().Name)));
             
